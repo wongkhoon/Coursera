@@ -1,0 +1,965 @@
+Using username "student-03-8255bb7a275e".
+Authenticating with public key "imported-openssh-key"
+Linux linux-instance 4.19.0-16-cloud-amd64 #1 SMP Debian 4.19.181-1 (2021-03-19)                                                                              x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ date
+Fri May 26 17:43:17 UTC 2023
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ls~/
+-bash: ls~/: No such file or directory
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ls ~/
+download_drive_file.sh  example_upload.py
+student-03-8255bb7a275e@linux-instance:~$ cat ~/download_drive_file.sh
+#!/bin/bash
+
+# First parameter is the ID, second parameter is the filename
+FILEID=$1
+FILENAME=$2
+
+# This script downloads the drive file with the given ID and saves it with the given name
+
+COOKIE_FILE=$(mktemp cookiesXXXX.txt)
+
+# First get the confirmation prompt because the file is too big
+CONFIRM=$(wget --quiet --save-cookies ${COOKIE_FILE} --keep-session-cookies "https://docs.google.com/uc?export=download&id=${FILEID}" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')
+
+# Then download the file using the confirmation prompt
+wget --load-cookies ${COOKIE_FILE} "https://docs.google.com/uc?export=download&confirm=${CONFIRM}&id=${FILEID}" -O ${FILENAME}
+
+# Finally, delete the cookie file
+rm ${COOKIE_FILE}
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/example_upload.py
+#!/usr/bin/env python3
+import requests
+
+# This example shows how a file can be uploaded using
+# The Python Requests module
+
+url = "http://localhost/upload/"
+with open('/usr/share/apache2/icons/icon.sheet.png', 'rb') as opened:
+    r = requests.post(url, files={'file': opened})
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/download_drive_file.sh
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./download_drive_file.sh 1LePo57dJcgzoK4uiI_48S01Etck7w_5f supplier-data.tar.gz
+--2023-05-26 17:44:42--  https://docs.google.com/uc?export=download&confirm=t&id=1LePo57dJcgzoK4uiI_48S01Etck7w_5f
+Resolving docs.google.com (docs.google.com)... 74.125.124.102, 74.125.124.138, 74.125.124.101, ...
+Connecting to docs.google.com (docs.google.com)|74.125.124.102|:443... connected.
+HTTP request sent, awaiting response... 303 See Other
+Location: https://doc-00-1o-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/jnccq5fv1flf9fqtv040govanepois6r/1685123025000/14227514949285994461/*/1LePo57dJcgzoK4uiI_48S01Etck7w_5f?e=download&uuid=2db61000-ac7b-4685-b797-810d8114fe2e [following]
+Warning: wildcards not supported in HTTP.
+--2023-05-26 17:44:42--  https://doc-00-1o-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/jnccq5fv1flf9fqtv040govanepois6r/1685123025000/14227514949285994461/*/1LePo57dJcgzoK4uiI_48S01Etck7w_5f?e=download&uuid=2db61000-ac7b-4685-b797-810d8114fe2e
+Resolving doc-00-1o-docs.googleusercontent.com (doc-00-1o-docs.googleusercontent.com)... 173.194.192.132, 2607:f8b0:4001:c0e::84
+Connecting to doc-00-1o-docs.googleusercontent.com (doc-00-1o-docs.googleusercontent.com)|173.194.192.132|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 88653399 (85M) [application/gzip]
+Saving to: ‘supplier-data.tar.gz’
+
+supplier-data.tar.gz                    100%[============================================================================>]  84.55M   111MB/s    in 0.8s
+
+2023-05-26 17:44:43 (111 MB/s) - ‘supplier-data.tar.gz’ saved [88653399/88653399]
+
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ tar xf ~/supplier-data.tar.gz
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ls ~/supplier-data
+descriptions  images
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ls ~/supplier-data/descriptions
+001.txt  002.txt  003.txt  004.txt  005.txt  006.txt  007.txt  008.txt  009.txt  010.txt
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/supplier-data/descriptions/001.txt
+Apple
+500 lbs
+Apple is one of the most nutritious and healthiest fruits. It is very rich in antioxidants and dietary fiber. Moderate consumption can not only increase satiety, but also help promote bowel movements. Apple also contains minerals such as calcium and magnesium, which can help prevent and delay bone loss and maintain bone health. It is good for young and old. 
+
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/supplier-data/descriptions/002.txt
+Avocado
+200 lbs
+Avocado contains large amount of oleic acid, a type of monounsaturated fat that can replace saturated fat in the diet, which is very effective in reducing cholesterol levels. Avocado is also high in fiber. Its soluble fiber can remove excess cholesterol from the body, while its insoluble fiber helps keep the digestive system functioning and prevent constipation.
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/supplier-data/descriptions/003.txt
+Blackberry
+150 lbs
+Blackberries have high nutritional value and are excellent fruit for health. It’s rich in nutrients, various amino acids and trace elements necessary for the human body. They are good at promoting blood coagulation, delaying aging, improving immunity and reducing blood pressure and blood lipids. Blackberries can be consumed directly as fruit or made into jam and fruit wine.
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/supplier-data/descriptions/004.txt
+Grape
+200 lbs
+Grapes have up to 30% of sugar. A large amount of fruit acid in grapes helps digestion. Eating proper amount of grapes can strengthen the spleen and stomach. Grapes also contain the minerals calcium, potassium, phosphorus, iron, glucose, fructose, protein, tartaric acid, and various vitamins, which have strong nutritional functions and improve the function of the human body.
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/supplier-data/descriptions/005.txt
+Kiwifruit
+250 lbs
+Kiwifruit contains rich vitamin C, which can strengthen the immune system and supplement the nutrients consumed by the brain. Its perfect ratio of low sodium and high potassium can replenish the energy lost by working long hours.
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/supplier-data/descriptions/006.txt
+Lemon
+300 lbs
+Lemon is rich in vitamin C, which can improve immunity, accelerate wound healing and prevent colds. In the long run, it can lower the chance of developing cancer. Lemon juice helps reduce the burden on the digestive system and promotes the release of toxins from the body.
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/supplier-data/descriptions/007.txt
+Mango
+300 lbs
+Mango contains higher levels of vitamin C than ordinary fruits. Eating mango can also reduce cholesterol and triglycerides, and help prevent cardiovascular disease. Due to its high level of vitamins, regular consumption of mango play an important role in improving body function and moisturizing the skin.
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/supplier-data/descriptions/008.txt
+Plum
+150 lbs
+Plums are rich in sugar, vitamins, fruit acids, amino acids and other nutrients. With high nutritional value, Plums have outstanding health-care functions, which includes refreshing and nourishing liver, relieving depression and poisoning, and clearing dampness and heat of the human body.
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/supplier-data/descriptions/009.txt
+Strawberry
+240 lbs
+Strawberries are rich in carotene and vitamin A, which can alleviate night blindness, maintain the health of epithelial tissues, nourish the liver, and promote body growth and development. Strawberries contains large amount of dietary fiber as well, which can promote gastrointestinal motility and food digestion in the gastrointestinal tract.
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/supplier-data/descriptions/010.txt
+Watermelon
+500 lbs
+Watermelon is good for relieving heat, eliminating annoyance and quenching thirst. It contains a lot of water, which is good for relieving the symptoms of acute fever immediately. The sugar and salt contained in watermelon can diuretic and eliminate kidney inflammation. Watermelon also contains substances that can lower blood pressure.
+
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ls ~/supplier-data/images
+001.tiff  002.tiff  003.tiff  004.tiff  005.tiff  006.tiff  007.tiff  008.tiff  009.tiff  010.tiff  LICENSE  README
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/changeImage.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/changeImage.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./changeImage.py
+Converted supplier-data/images/003.tiff to supplier-data/images/003.jpeg
+Converted supplier-data/images/010.tiff to supplier-data/images/010.jpeg
+Converted supplier-data/images/002.tiff to supplier-data/images/002.jpeg
+Converted supplier-data/images/004.tiff to supplier-data/images/004.jpeg
+Converted supplier-data/images/005.tiff to supplier-data/images/005.jpeg
+Converted supplier-data/images/007.tiff to supplier-data/images/007.jpeg
+Converted supplier-data/images/008.tiff to supplier-data/images/008.jpeg
+Converted supplier-data/images/006.tiff to supplier-data/images/006.jpeg
+Converted supplier-data/images/009.tiff to supplier-data/images/009.jpeg
+Converted supplier-data/images/001.tiff to supplier-data/images/001.jpeg
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ file ~/supplier-data/images/003.jpeg
+/home/student-03-8255bb7a275e/supplier-data/images/003.jpeg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 600x400, components 3
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/changeImage.py
+#!/usr/bin/env python3
+
+import os
+from PIL import Image
+
+def convert_tiff_to_jpeg(image_path):
+    """
+    Converts a Tiff image to JPEG format, removes the alpha transparency layer
+    and resizes the image to (600,400) dimensions.
+
+    Args:
+        image_path(str): The path to the TIFF image file.
+
+    Returns:
+        str: The path to the converted JPEG image file.
+    """
+    image=Image.open(image_path).convert("RGB")
+    image_dir,image_name=os.path.split(image_path)
+    image_name=os.path.splitext(image_name)[0] # Get filename without extension
+    jpeg_path=os.path.join(image_dir,image_name+'.jpeg')
+    image.resize((600,400)).save(jpeg_path,'jpeg')
+    return jpeg_path
+
+def main():
+    image_dir='supplier-data/images/'
+    tiff_files=[file for file in os.listdir(image_dir) if file.endswith('.tiff')]
+
+    for tiff_file in tiff_files:
+        tiff_path=os.path.join(image_dir,tiff_file)
+        jpeg_path=convert_tiff_to_jpeg(tiff_path)
+        print(f"Converted {tiff_path} to {jpeg_path}")
+
+if __name__=="__main__":
+    main()
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/example_upload.py
+#!/usr/bin/env python3
+import requests
+
+# This example shows how a file can be uploaded using
+# The Python Requests module
+
+url = "http://localhost/upload/"
+with open('/usr/share/apache2/icons/icon.sheet.png', 'rb') as opened:
+    r = requests.post(url, files={'file': opened})
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/example_upload.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./example_upload.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/supplier_image_upload.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/supplier_image_upload.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./supplier_image_upload.py
+Uploaded: supplier-data/images/007.jpeg
+Uploaded: supplier-data/images/002.jpeg
+Uploaded: supplier-data/images/004.jpeg
+Uploaded: supplier-data/images/009.jpeg
+Uploaded: supplier-data/images/003.jpeg
+Uploaded: supplier-data/images/010.jpeg
+Uploaded: supplier-data/images/008.jpeg
+Uploaded: supplier-data/images/001.jpeg
+Uploaded: supplier-data/images/005.jpeg
+Uploaded: supplier-data/images/006.jpeg
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/supplier_image_upload.py
+#!/usr/bin/env python3
+
+import requests
+import os
+
+def upload_jpeg_images(image_directory,upload_url):
+    """
+    Upload JPEG images from the specified directory to the given upload URL.
+
+    Args:
+        image_directory (str): The path to the directory containing JPEG images.
+        upload_url (str): The URL for image upload.
+
+    """
+    for file_name in os.listdir(image_directory):
+        if file_name.endswith('.jpeg'):
+            image_path=os.path.join(image_directory,file_name)
+            with open(image_path,'rb') as file:
+                response=requests.post(upload_url,files={'file':file})
+                if response.ok:
+                    print(f"Uploaded: {image_path}")
+                else:
+                    print(f"Failed to upload: {image_path}")
+
+def main():
+    image_directory="supplier-data/images"
+    upload_url="http://localhost/upload/"
+
+    upload_jpeg_images(image_directory,upload_url)
+
+if __name__=="__main__":
+    main()
+
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/run.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/run.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./run.py
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 204, in _new_conn
+    socket_options=self.socket_options,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 802, in urlopen
+    **response_kw,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 504, in _make_request
+    enforce_content_length=enforce_content_length,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 388, in request
+    self.endheaders()
+  File "/usr/lib/python3.7/http/client.py", line 1255, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.7/http/client.py", line 1030, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.7/http/client.py", line 970, in send
+    self.connect()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 236, in connect
+    self.sock = self._new_conn()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 217, in _new_conn
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fb60207f9b0>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 497, in send
+    chunked=chunked,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb60207f9b0>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./run.py", line 31, in <module>
+    response = requests.post('http://34.31.190.200/fruits/', json=item)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb60207f9b0>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/run.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/run.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./run.py
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 204, in _new_conn
+    socket_options=self.socket_options,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 802, in urlopen
+    **response_kw,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 504, in _make_request
+    enforce_content_length=enforce_content_length,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 388, in request
+    self.endheaders()
+  File "/usr/lib/python3.7/http/client.py", line 1255, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.7/http/client.py", line 1030, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.7/http/client.py", line 970, in send
+    self.connect()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 236, in connect
+    self.sock = self._new_conn()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 217, in _new_conn
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f69847da978>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 497, in send
+    chunked=chunked,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f69847da978>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./run.py", line 31, in <module>
+    response = requests.post('http://34.31.190.200/fruits/', json=item)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f69847da978>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/run.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/run.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./run.py
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 204, in _new_conn
+    socket_options=self.socket_options,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 802, in urlopen
+    **response_kw,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 504, in _make_request
+    enforce_content_length=enforce_content_length,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 388, in request
+    self.endheaders()
+  File "/usr/lib/python3.7/http/client.py", line 1255, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.7/http/client.py", line 1030, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.7/http/client.py", line 970, in send
+    self.connect()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 236, in connect
+    self.sock = self._new_conn()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 217, in _new_conn
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f14aeab0940>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 497, in send
+    chunked=chunked,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f14aeab0940>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./run.py", line 31, in <module>
+    response = requests.post('http://34.31.190.200/fruits/', json=item)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f14aeab0940>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./run.py
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 204, in _new_conn
+    socket_options=self.socket_options,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 802, in urlopen
+    **response_kw,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 504, in _make_request
+    enforce_content_length=enforce_content_length,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 388, in request
+    self.endheaders()
+  File "/usr/lib/python3.7/http/client.py", line 1255, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.7/http/client.py", line 1030, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.7/http/client.py", line 970, in send
+    self.connect()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 236, in connect
+    self.sock = self._new_conn()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 217, in _new_conn
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fdfe1a40978>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 497, in send
+    chunked=chunked,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdfe1a40978>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./run.py", line 31, in <module>
+    response = requests.post('http://34.31.190.200/fruits/', json=item)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdfe1a40978>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/run.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/run.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./run.py
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 204, in _new_conn
+    socket_options=self.socket_options,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 802, in urlopen
+    **response_kw,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 504, in _make_request
+    enforce_content_length=enforce_content_length,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 388, in request
+    self.endheaders()
+  File "/usr/lib/python3.7/http/client.py", line 1255, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.7/http/client.py", line 1030, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.7/http/client.py", line 970, in send
+    self.connect()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 236, in connect
+    self.sock = self._new_conn()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 217, in _new_conn
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fce10cdb9b0>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 497, in send
+    chunked=chunked,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fce10cdb9b0>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./run.py", line 31, in <module>
+    response = requests.post('http://34.31.190.200/fruits/', json=item)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fce10cdb9b0>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./run.py
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 204, in _new_conn
+    socket_options=self.socket_options,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 802, in urlopen
+    **response_kw,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 504, in _make_request
+    enforce_content_length=enforce_content_length,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 388, in request
+    self.endheaders()
+  File "/usr/lib/python3.7/http/client.py", line 1255, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.7/http/client.py", line 1030, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.7/http/client.py", line 970, in send
+    self.connect()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 236, in connect
+    self.sock = self._new_conn()
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connection.py", line 217, in _new_conn
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f50285fc9b0>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 497, in send
+    chunked=chunked,
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/usr/local/lib/python3.7/dist-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f50285fc9b0>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./run.py", line 31, in <module>
+    response = requests.post('http://34.31.190.200/fruits/', json=item)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='34.31.190.200', port=80): Max retries exceeded with url: /fruits/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f50285fc9b0>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/run.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/run.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./run.py
+Created feedback ID: 2
+Created feedback ID: 3
+Created feedback ID: 4
+Created feedback ID: 5
+Created feedback ID: 6
+Created feedback ID: 7
+Created feedback ID: 8
+Created feedback ID: 9
+Created feedback ID: 10
+Created feedback ID: 11
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/run.py
+#! /usr/bin/env python3
+
+import os
+import requests
+import re
+
+desc_path = 'supplier-data/descriptions/'
+image_path = 'supplier-data/images/'
+
+text_files = sorted(os.listdir(desc_path))
+jpeg_images = sorted([image_name for image_name in os.listdir(image_path) if '.jpeg' in image_name])
+
+list_content = []
+
+for file, image_name in zip(text_files, jpeg_images):
+    # Read the content from the description file
+    with open(os.path.join(desc_path, file), 'r') as f:
+        data = {}
+        contents = f.read().split("\n")[0:3]  # Read only the first 3 lines
+
+        # Process the content and populate the data dictionary
+        data['name'] = contents[0].strip()
+        data['weight'] = int(re.search(r'\d+', contents[1]).group())  # Extract the weight as an integer
+        data['description'] = contents[2].strip()
+        data['image_name'] = image_name
+
+        list_content.append(data)
+
+for item in list_content:
+    # Send a POST request with the item as JSON data
+    response = requests.post('http://35.223.102.134/fruits/', json=item)
+
+    # Check the response status code
+    if response.status_code != 201:
+        raise Exception('POST error status={}'.format(response.status_code))
+
+    # Print the feedback ID if the request was successful
+    print('Created feedback ID: {}'.format(response.json()["id"]))
+
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/reports.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/report_email.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/emails.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/report_email.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./report_email.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/reports.py
+#!/usr/bin/env python3
+
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet
+
+def generate_report(filename, title, additional_info):
+    styles = getSampleStyleSheet()
+    report = SimpleDocTemplate(filename)
+    report_title = Paragraph(title, styles["Title"])
+    report_info = Paragraph(additional_info, styles["BodyText"])
+    empty_line = Spacer(1, 20)
+    report.build([report_title, empty_line, report_info])
+
+You have mail in /var/mail/student-03-8255bb7a275e
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/report_email.py
+#!/usr/bin/env python3
+
+import os
+from datetime import date
+from reports import generate_report
+from emails import generate_email, send_email
+
+desc_path = 'supplier-data/descriptions/'
+report = []
+
+
+def process_data(data):
+    report = []
+    for item in data:
+        report.append("name: {}<br/>weight: {}\n".format(item[0], item[1]))
+    return report
+
+
+def read_text_files():
+    text_data = []
+    for text_file in os.listdir(desc_path):
+        with open(os.path.join(desc_path, text_file), 'r') as f:
+            text_data.append([line.strip() for line in f.readlines()])
+    return text_data
+
+
+if __name__ == "__main__":
+    text_data = read_text_files()
+
+    # Generate the PDF report
+    summary = process_data(text_data)
+    paragraph = "<br/><br/>".join(summary)
+    title = "Processed Update on {}".format(date.today().strftime("%B %d, %Y"))
+    attachment = "/tmp/processed.pdf"
+    generate_report(attachment, title, paragraph)
+
+    # Send the email
+    subject = "Upload Completed - Online Fruit Store"
+    sender = "automation@example.com"
+    receiver = "{}@example.com".format(os.environ.get('USER'))
+    body = "All fruits are uploaded to our website successfully. A detailed list is attached to this email."
+    message = generate_email(sender, receiver, subject, body, attachment)
+    send_email(message)
+
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/emails.py
+#!/usr/bin/env python3
+
+import email.message
+import mimetypes
+import os.path
+import smtplib
+
+def generate_email(sender, recipient, subject, body, attachment_path=None):
+    """Creates an email with an attachment if provided."""
+    message = email.message.EmailMessage()
+    message["From"] = sender
+    message["To"] = recipient
+    message["Subject"] = subject
+    message.set_content(body)
+
+    if attachment_path:
+        attachment_filename = os.path.basename(attachment_path)
+        mime_type, _ = mimetypes.guess_type(attachment_path)
+        mime_type, mime_subtype = mime_type.split('/', 1)
+
+        with open(attachment_path, 'rb') as attachment:
+            message.add_attachment(
+                attachment.read(),
+                maintype=mime_type,
+                subtype=mime_subtype,
+                filename=attachment_filename
+            )
+
+    return message
+
+def send_email(message):
+    """Sends the message to the configured SMTP server."""
+    with smtplib.SMTP('localhost') as mail_server:
+        mail_server.send_message(message)
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./health_check.py
+./health_check.py: line 1: import: command not found
+./health_check.py: line 2: import: command not found
+./health_check.py: line 3: import: command not found
+./health_check.py: line 4: import: command not found
+from: can't read /var/mail/emails
+./health_check.py: line 7: syntax error near unexpected token `('
+./health_check.py: line 7: `def check_cpu_usage():'
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./health_check.py
+./health_check.py: line 1: import: command not found
+./health_check.py: line 2: import: command not found
+./health_check.py: line 3: import: command not found
+./health_check.py: line 4: import: command not found
+from: can't read /var/mail/emails
+./health_check.py: line 8: syntax error near unexpected token `('
+./health_check.py: line 8: `def check_cpu_usage():'
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./health_check.py
+Traceback (most recent call last):
+  File "./health_check.py", line 7, in <module>
+    from emails import generate_error_report, send_email
+ImportError: cannot import name 'generate_error_report' from 'emails' (/home/student-03-8255bb7a275e/emails.py)
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./health_check.py
+Traceback (most recent call last):
+  File "./health_check.py", line 42, in <module>
+    if not check():
+TypeError: check_disk_usage() missing 1 required positional argument: 'disk'
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./health_check.py
+Traceback (most recent call last):
+  File "./health_check.py", line 17, in <module>
+    from emails import generate_error_report, send_email
+ImportError: cannot import name 'generate_error_report' from 'emails' (/home/student-03-8255bb7a275e/emails.py)
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./health_check.py
+Traceback (most recent call last):
+  File "./health_check.py", line 69, in <module>
+    if not check():
+TypeError: 'bool' object is not callable
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./health_check.py
+Traceback (most recent call last):
+  File "./health_check.py", line 15, in <module>
+    from emails import generate_error_report, send_email
+ImportError: cannot import name 'generate_error_report' from 'emails' (/home/student-03-8255bb7a275e/emails.py)
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./health_check.py
+Traceback (most recent call last):
+  File "./health_check.py", line 15, in <module>
+    from emails import generate_error_report, send_email
+ImportError: cannot import name 'generate_error_report' from 'emails' (/home/student-03-8255bb7a275e/emails.py)
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ nano ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ sudo chmod +x ~/health_check.py
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ ./health_check.py
+Traceback (most recent call last):
+  File "./health_check.py", line 59, in <module>
+    if not check():
+TypeError: check_disk_usage() missing 1 required positional argument: 'disk'
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ cat ~/health_check.py
+#!/usr/bin/env python3
+
+"""
+This Python script sends an email if certain problems are detected:
+- Reports an error if CPU usage exceeds 80%
+- Reports an error if available disk space is below 20%
+- Reports an error if available memory is less than 500MB
+- Reports an error if the hostname "localhost" cannot be resolved to "127.0.0.1"
+"""
+
+import os
+import shutil
+import psutil
+import socket
+import emails
+
+def generate_error_report(sender, recipient, subject, body):
+    message = email.message.EmailMessage()
+    message["From"] = sender
+    message["To"] = recipient
+    message["Subject"] = subject
+    message.set_content(body)
+    return message
+
+def check_cpu_usage():
+    """Verifies that there is sufficient unused CPU"""
+    usage = psutil.cpu_percent(1)
+    return usage < 80
+
+
+def check_disk_usage(disk):
+    """Verifies that there is enough free space on the disk"""
+    du = shutil.disk_usage(disk)
+    free_percent = du.free / du.total * 100
+    return free_percent > 20
+
+
+def check_available_memory():
+    """Checks available memory in the Linux instance (in megabytes)"""
+    available_memory = psutil.virtual_memory().available / (1024 * 1024)
+    return available_memory > 500
+
+
+def check_localhost():
+    """Checks if localhost is correctly configured as 127.0.0.1"""
+    localhost = socket.gethostbyname('localhost')
+    return localhost == '127.0.0.1'
+
+
+to_be_checked = {
+    check_cpu_usage: "CPU usage is over 80%",
+    check_disk_usage: "Available disk space is less than 20%",
+    check_available_memory: "Available memory is less than 500MB",
+    check_localhost: "localhost cannot be resolved to 127.0.0.1"
+}
+
+errors = []
+for check, message in to_be_checked.items():
+    if not check():
+        errors.append(message)
+
+# Send email
+if errors:
+    try:
+        sender = "automation@example.com"
+        receiver = "{}@example.com".format(os.environ.get('USER'))
+        subject = "Error - Health Check Failed"
+        body = "\n".join(errors) + "\nPlease check your system and resolve the issue as soon as possible."
+        message = generate_error_report(sender, receiver, subject, body)
+        send_email(message)
+        print('Email sent successfully')
+    except NameError:
+        pass
+
+student-03-8255bb7a275e@linux-instance:~$
+student-03-8255bb7a275e@linux-instance:~$ date
+Fri May 26 19:14:31 UTC 2023
+student-03-8255bb7a275e@linux-instance:~$
