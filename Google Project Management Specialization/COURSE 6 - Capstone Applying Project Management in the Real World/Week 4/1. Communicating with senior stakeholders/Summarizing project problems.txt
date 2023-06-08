@@ -1,0 +1,39 @@
+In this activity, you’ll act as Peta and summarize an email regarding a problem with the Sauce & Spoon test pilot. You will summarize the problem to Deanna, the Director of Operations (a stakeholder). To begin, please read the email below:
+
+To: Peta (Project Manager)
+
+From: Gilly (North Location General Manager)
+
+Subject: Customer Survey Results   
+
+Hi Peta,
+
+I reviewed the customer survey results from the tablet pilot test launch. From my perspective, one piece of negative feedback stood out from the rest. Several of the customers mentioned they had a negative experience when paying with cash. 
+
+I believe this is an important issue to resolve because about 10% of our customers pay in cash. I think it may negatively impact the restaurant if 10% of the customers are having a negative experience with the checkout process. This could lead to less repeat customers. It could also lead to unenthusiastic word-of-mouth and less than stellar online reviews.
+
+We should come up with a new process to more quickly handle cash payments. I really like the new tablets, but we need a checkout process that works well with both the credit cards, and cash. Regarding the new process, it would help to make cash more accessible to our wait staff. Currently, they have to go to the bar to access the cash register. We should consider adding a second register by the kitchen. Also, to get ahead of the issue, I think wait staff should ask customers if they’re paying with cash or a credit card.
+
+Please let me know how we should proceed with an improved cash checkout process. I think we can figure out something that will work well alongside the new tablets. I’m excited to use the new menu tablets full-time!
+
+Sincerely, 
+
+Gilly
+
+General Manager - Sauce & Spoon North Location
+
+----
+
+Have you read the email? 
+
+1 point
+
+I have!
+
+2.
+Question 2
+Using the email above, describe the problem that Peta needs to address to the stakeholder Deanna, the Director of Operations.
+
+
+Question 3
+Using the problem you identified, explain it in a professional manner to Deanna, the Director of Operations. Remember, it’s your responsibility as a project manager to synthesize information into a short summary that clearly communicates the issue to the stakeholder. Consider including how to resolve the issue. Write 1-2 sentences.
