@@ -1,0 +1,111 @@
+Using username "student-03-9c0c0d41f927".
+Authenticating with public key "imported-openssh-key"
+Welcome to Ubuntu 18.04.6 LTS (GNU/Linux 5.4.0-1104-gcp x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ System information disabled due to load higher than 1.0
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+5 additional security updates can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+Creating directory '/home/student-03-9c0c0d41f927'.
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+student-03-9c0c0d41f927@puppet:~$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+student-03-9c0c0d41f927@puppet:~$
+student-03-9c0c0d41f927@puppet:~$ ls /
+bin   dev  home        initrd.img.old  lib64       media  opt   root  sbin  srv  tmp  var      vmlinuz.old
+boot  etc  initrd.img  lib             lost+found  mnt    proc  run   snap  sys  usr  vmlinuz
+student-03-9c0c0d41f927@puppet:~$
+student-03-9c0c0d41f927@puppet:~$ export PATH=/bin:/usr/bin
+student-03-9c0c0d41f927@puppet:~$
+student-03-9c0c0d41f927@puppet:~$ ls /
+bin   dev  home        initrd.img.old  lib64       media  opt   root  sbin  srv  tmp  var      vmlinuz.old
+boot  etc  initrd.img  lib             lost+found  mnt    proc  run   snap  sys  usr  vmlinuz
+student-03-9c0c0d41f927@puppet:~$
+student-03-9c0c0d41f927@puppet:~$ /etc/puppet/code/environments/productio/modules/profile/manifests
+-bash: /etc/puppet/code/environments/productio/modules/profile/manifests: No such file or directory
+student-03-9c0c0d41f927@puppet:~$
+student-03-9c0c0d41f927@puppet:~$ cd /etc/puppet/code/environments/productio/modules/profile/manifests
+-bash: cd: /etc/puppet/code/environments/productio/modules/profile/manifests: No such file or directory
+student-03-9c0c0d41f927@puppet:~$
+student-03-9c0c0d41f927@puppet:~$ cd /etc/puppet/code/environments/production/modules/profile/manifests
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$ cat init.pp
+class profile {
+        file { '/etc/profile.d/append-path.sh':
+                owner   => 'root',
+                group   => 'root',
+                mode    => '0646',
+                content => "PATH=/java/bin\n",
+        }
+}
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$ sudo nano init.pp
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$ sudo puppet agent -v --test
+Info: Using configured environment 'production'
+Info: Retrieving pluginfacts
+Info: Retrieving plugin
+Info: Retrieving locales
+Info: Caching catalog for puppet.us-central1-a.c.qwiklabs-gcp-02-44485b0a43d8.internal
+Info: Applying configuration version '1684180137'
+Notice: /Stage[main]/Profile/File[/etc/profile.d/append-path.sh]/content:
+--- /etc/profile.d/append-path.sh       2023-05-15 19:37:43.707003410 +0000
++++ /tmp/puppet-file20230515-5020-1vu2yz8       2023-05-15 19:48:57.457370878 +0000
+@@ -1 +1 @@
+-PATH=/java/bin
++PATH=$PATH:/java/bin
+
+Info: Computing checksum on file /etc/profile.d/append-path.sh
+Info: /Stage[main]/Profile/File[/etc/profile.d/append-path.sh]: Filebucketed /etc/profile.d/append-path.sh to puppet with sum b1ca50e93b6ea92bd7b3eeb02c69f10
+Notice: /Stage[main]/Profile/File[/etc/profile.d/append-path.sh]/content: content changed '{md5}b1ca50e93b6ea92bd7b3eeb02c69f109' to '{md5}30a2bc8929446ce0487cd3c5921cb14'
+Notice: /Stage[main]/Profile/File[/etc/profile.d/append-path.sh]/mode: mode changed '0646' to '0644'
+Notice: Applied catalog in 0.07 seconds
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$ echo $PATH
+/bin:/usr/bin
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$ ls
+init.pp
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$ cat init.pp
+class profile {
+        file { '/etc/profile.d/append-path.sh':
+                owner   => 'root',
+                group   => 'root',
+                mode    => '0644',
+                content => "PATH=\$PATH:/java/bin\n",
+        }
+}
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$ date
+Mon May 15 19:49:50 UTC 2023
+student-03-9c0c0d41f927@puppet:/etc/puppet/code/environments/production/modules/profile/manifests$

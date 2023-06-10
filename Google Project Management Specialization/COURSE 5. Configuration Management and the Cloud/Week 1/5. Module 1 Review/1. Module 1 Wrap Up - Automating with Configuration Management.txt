@@ -1,0 +1,39 @@
+We started our journey talking about what would happen
+if you needed to upgrade a package in a fleet
+of 1,000 different servers. If you've never heard about configuration management before, an upgrade like that
+probably seemed like a super long and
+boring task, right? But now you know
+that there's a bunch of tools you can use to make your life much easier when making large-scale
+changes like that one. We've talked about the automation that's necessary
+for provisioning, managing and adapting a fleet of computers in a scalable way. We called out that an
+important concept in today's IT world is to treat
+our infrastructure as code. This lets us manage our fleet of computers in a consistent, versionable, reliable
+and repeatable way. To figure out how to get there, we've covered a lot of concepts related to configuration
+management, like how these tools use a domain specific language to help us clearly state what
+we want our system to look like after
+the tools have run. We've mentioned that the language is declarative because we declare our goals rather than detail the
+steps to get there, and most importantly the
+actions taken must be idempotent so that
+several runs of the same rules always
+lead to the same results. All along, we've
+been using Puppet as an example of how configuration
+management tools work. We looked into the puppet
+DSL syntax and checked out the most common resources:
+packages, files and services. We'll learn about
+other resources and other advanced techniques
+in future videos. But by now you should have a pretty good idea of what
+Puppet rules look like and how you can put into action the configuration management
+concepts that we discussed. With the concepts we've covered, you're probably starting to see how keeping your
+fleet of machines, whether they're
+virtual or physical, off of a pedestal
+is good practice. If something breaks, goes down or catches fire
+literally or figuratively, you can easily spin up a replacement because you
+know exactly what it's supposed to look like from the configuration and you can deploy it easily
+using the automation. In the next module, we'll check out how you
+can deploy Puppet in your infrastructure and look into some more advanced
+configuration management and change management techniques. Before that, you'll have the opportunity to try out fixing a system where the
+configuration management isn't doing what
+it's supposed to. You'll see what running the
+Puppet agent looks like in practice and find out what's wrong with
+the deployed rules, and then get the automation
+to behave as expected. Cool, right? Let's go for it.
