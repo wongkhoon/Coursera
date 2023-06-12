@@ -1,0 +1,37 @@
+Hi. My name's Clennita, and I'm a Senior Engineering
+Program Manager at Google. So the planning phase of
+project management, is essentially the time
+where you take a step back and you reflect on what's
+the scope of the project. So what are the problems
+that we need to solve? When you look at
+planning for projects, it's critical to understanding
+what you're building, who you're building for, and how long you
+have to build it. We look at our risk, to make sure that we know what
+potentially could derail the project.
+And if possible, create mitigation that will circumvent any risk
+that we may come in contact with. Or, just be
+aware of things like scope. We also look at timing. Is there a deadline
+that we need to hit? And if so, do we have enough
+time to hit that deadline? We assess the work
+that needs to be done, to understand if the work that needs to be done in order
+to meet the requirements fits into the timeline
+that we have. We also look at testing—what the testing plan looks like, what is success
+going to look like—so we know what the target is so that when we hit the
+target and we validate it, we already know what
+metrics we expect to get. I'm a planner—it's
+just in my nature. Planning sets a tone for what we're actually
+doing together. It creates a sense of team. The planning also
+aligns everybody, to understand what it is
+we're all shooting for, what it is our goals are, what success is
+going to look like. It really is the
+place where we come together to ensure
+that we're all on the same page, and we're all
+going in the same direction. When you don't have
+that, things get lost. You're not talking
+to the right people, you have miscommunications, things get delayed and you
+don't really understand why, people aren't comfortable
+communicating what progress is happening, they really aren't comfortable in communicating when
+their problem comes up. So you want to just set a tone of "We're all in this together, we're all going to be
+successful together, and we are going to
+run into roadblocks, we are going to
+run into problems, but we're going to work it out and figure it out as a team."
