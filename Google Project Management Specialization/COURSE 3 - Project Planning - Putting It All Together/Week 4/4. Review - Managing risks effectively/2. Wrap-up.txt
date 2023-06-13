@@ -1,0 +1,16 @@
+Nice work. Let's recap what
+we've discussed so far. You learned about risks, which are potential events that could impact your project. You also learned how
+risks differ from issues, which are known and
+real problems that may affect the ability to
+complete a certain task. I introduced you to
+risk management, which is the process
+of identifying potential risks and issues
+that could impact a project, and evaluating and applying steps to address their effects. We've discussed brainstorming as a technique for
+identifying risks, and I introduced you to tools you can use to identify, assess, and document risks, like a
+probability and impact matrix, a risk register, and a
+risk management plan. Finally, we discussed
+the importance of communicating risks to
+your stakeholders in order to set expectations
+and demonstrate your work to plan for and mitigate potential problems
+with the project. Coming up, we'll discuss documentation and
+communication. See you soon.

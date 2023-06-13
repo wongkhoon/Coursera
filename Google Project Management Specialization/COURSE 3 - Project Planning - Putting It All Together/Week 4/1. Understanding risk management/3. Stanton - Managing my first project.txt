@@ -1,0 +1,29 @@
+[MUSIC] Hi, I'm Stanton, and
+I'm a program manager at YouTube. Thinking back to one of the first
+projects I ever worked on, we were actually in charge of
+building this sports highlight app. But it wasn't just an app,
+it was an iOS app, it was an Android app, it was a website. And I remember the very first
+meeting I went to, I was just furiously taking down notes and trying to
+understand what the heck was going on. And immediately after I thought: okay, this is my first project,
+I have to get all the details right. I have to make sure we know every
+little thing that was going to happen. The launch date needed to be perfect.
+We had to get all the bugs down to zero. I was just totally consumed with getting
+everything right the first time. I think what I've realized since then is you're probably not going to get
+your first project plan correct because there's just so
+many things that can change. You might find a bug last
+minute before launch. Your client might come in and
+say they want different requirements like, "The screen needs to be
+blue instead of red." And then you find out that it's not really
+that easy to change from blue to red. If I could go back and
+tell myself what to do at that point or what I could have done differently, I would have just told myself:
+don't worry so much—changes happen. It's how you react and respond to
+those changes that's more important. I think one of the best compliments I've
+gotten is, "Even throughout all this mess, you're cool, you're calm, and
+you're collected." You think through what
+are the issues that have happened, how do we resolve them, and
+you do your program management thing. You're not always going to have
+the right answer the very first time; things can change at the last minute. If you're able to stay cool and calm, make sure you understand everything
+else that's going on on the project. All these years have taught me that,
+you can always reuse some things. You're always going to have to react
+to some things, but no matter what, try to think proactively, try to figure
+out what those issues are going to be, and you'll be the better for it.

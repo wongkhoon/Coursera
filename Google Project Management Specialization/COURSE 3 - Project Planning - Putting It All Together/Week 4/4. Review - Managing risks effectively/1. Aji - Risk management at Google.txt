@@ -1,0 +1,47 @@
+My name is Aji, and I'm a Senior Program
+Manager at Google. Program management spans a
+lot of different industries, a lot of different applications. At its core, it means that
+we bring order to chaos. At Google for me, I work on product launches. I also develop new processes
+and procedures for teams. I work across different
+functional areas, so that could be engineering, it could be UX, it could
+even be People Ops to help launch products. To me, risk management
+means looking ahead and trying to
+anticipate issues. I liken it to the analogy
+of being on a ship and being the person
+looking ahead to make sure there's
+no rocks, right? A lot of our projects, I would say for the most part, at least in my experience, are never just done in a silo. There are other
+dependencies, right, and other teams that are
+depending on you to execute. It is very important to de-risk, to look ahead, to
+manage those risks, to communicate those risks to the appropriate stakeholders, to make sure that you're
+delivering on your commitments. I think that the first step is identifying the problems, bringing in the right people, so that you know that you
+have a good, kind of, comprehensive list,
+and then from there, trying to figure out how to manage those issues, and again, that can be, and that should be, a very collaborative
+thing, right? Because everybody on your team needs to be equally
+vested in making sure that the project
+executes successfully. I have a project right
+now that I'm working on, and with this project, after we determined what our strategy was
+going to be and what our end state was
+going to be from a product strategy perspective, the next step was
+creating what we call "UX mocks" or "UX designs," and so basically,
+that's just pictures of what we want our
+end state to be like, what's our ideal state, right, in a visual format. As a program manager,
+my job is to kind of take a step
+back and make sure, okay, what are the
+potential landmines? What could go wrong? As I started going through the designs and looking at them, I realized that in my
+mind it was hard for me to reconcile and say, "Okay, this is what
+we're doing today. This is what's going to change." It wasn't very clear to me, and I'm less of a visual person and more of like a, you know, I like spreadsheets
+and all of that and have things in detail, and so in my mind,
+I was like, okay, if I'm having this issue trying to reconcile between, okay, visually we say we're
+going to design this, but this is where we are,
+what's the difference? If I'm having this issue, then maybe other people are
+having this issue, as well. And okay, if other people
+are having this issue, maybe our engineers are
+having this issue as well. And so, when I set up the
+meeting, within five minutes, we started to realize that
+there were differences in how they were interpreting
+what we were supposed to do, that we had gone
+down this road where these two teams were executing on things in a different way. We wouldn't have realized
+it until the end, and then it would
+have been too late. I love program management. I love coming into a problem, being given a problem that's very ambiguous and not well
+thought through, right? And it's a huge pain point, and then coming up with a
+solution to that problem.
